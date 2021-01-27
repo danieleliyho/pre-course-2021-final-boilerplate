@@ -10,6 +10,11 @@ add.addEventListener("click",function(){
 
 
 function getNewTask(){
+    let inputValue = input.value;
+    let text = document.createTextNode(inputValue);
+    if(inputValue === ""){
+        alert("please write some thing")
+    }else{
     let divContainer = document.createElement("div");
     let divDate = document.createElement("div");
     let divPriority = document.createElement("div");
@@ -18,6 +23,11 @@ function getNewTask(){
     divDate.className = "todo-created-at";
     divPriority.className = "todo-priority";
     divText.className = "todo-text";
+    todoList.appendChild(divContainer);
+    divContainer.appendChild(divDate);
+    divContainer.appendChild(divPriority);
+    divContainer.appendChild(divText);
+    divText.appendChild(text)}
 }
 // function getNewTask () {
 //     let li= document.createElement("li");
