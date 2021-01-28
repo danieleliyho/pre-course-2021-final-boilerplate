@@ -3,9 +3,13 @@ let add = document.getElementById('add-button');
 let todoList = document.getElementById('todo-list');
 let input = document.getElementById("text-input");
 let priority = document.getElementById("priority-selector")
+let count = 0
+document.querySelector("#counter").innerHTML = count;
 
 add.addEventListener("click",function(){
-    getNewTask ();
+    getNewTask();
+    counter();
+    add.addEventListener('input',saveToLocalStorage);
 })
 let sort = document.getElementById("sort-button");
 
@@ -34,61 +38,60 @@ function getNewTask(){
     if(inputValue === ""){
         alert("please write some thing");
     }else{
-    let divContainer = document.createElement("div");
-    let divDate = document.createElement("div");
-    let divPriority = document.createElement("div");
-    let divText = document.createElement("div");
-    divContainer.className = "todo-container";
-    divDate.className = "todo-created-at divInfo";
-    divPriority.className = "todo-priority divInfo";
-    divText.className = "todo-text divInfo";
-    todoList.appendChild(divContainer);
-    divContainer.appendChild(divDate);
-    divContainer.appendChild(divPriority);
-    divContainer.appendChild(divText);
-    divText.appendChild(text)
-    divPriority.appendChild(priorityText)
-    divDate.appendChild(dateSql)
-
+        let divContainer = document.createElement("div");
+        let divDate = document.createElement("div");
+        let divPriority = document.createElement("div");
+        let divText = document.createElement("div");
+        divContainer.className = "todo-container";
+        divDate.className = "todo-created-at divInfo";
+        divPriority.className = "todo-priority divInfo";
+        divText.className = "todo-text divInfo";
+        todoList.appendChild(divContainer);
+        divContainer.appendChild(divDate);
+        divContainer.appendChild(divPriority);
+        divContainer.appendChild(divText);
+        divText.appendChild(text)
+        divPriority.appendChild(priorityText)
+        divDate.appendChild(dateSql)
 }input.value = "";
 }
 function sorter(){
     let divContainer = document.getElementsByClassName("todo-container");
     let priority = document.getElementsByClassName("todo-priority");
+
+    console.log(priority[0].textContent)
     let temp = 0;
-    for(let i = 0; i<divContainer.length; i++){
+    for(let i = 0; i<=divContainer.length; i++){
         for(let j = 0; j<divContainer.length-1; j++){
-            if(priority[j].value<priority[j+1].value){
-                temp = priority[j].value;
-                priority[j].value = priority[j+1].value;
-                priority[j+1].value = temp;
-                
+            if(priority[j].textContent<priority[j+1].textContent && priority[j].textContent!==priority[j+1].textContent){
                 temp = divContainer[j];
                 divContainer[j] = divContainer[j+1];
                 divContainer[j+1] = temp;
+                todoList.appendChild(divContainer[j]);
                 
             }
         }
     }
+    console.log(priority[0].textContent)
+
     
-    for(let x = 0; x<divContainer.length; x++){
-        todoList.appendChild(divContainer[x]);
-        console.log(priority.value)
-    }
+    // for(let x = 0; x<divContainer.length; x++){
+    //     todoList.appendChild(divContainer[x]);
+    //     console.log(priority.value)
+    // }
+}
+function counter(){
+        count +=1
+        document.querySelector("#counter").innerHTML = count;
+
+}
+let date = document.querySelector(".todo-created-at")
+let priorityText = document.querySelector(".todo-priority")
+let text = document.querySelector(".todo-text")
+const saveToLocalStorage = () => {
+    localStorage.setItem("textInputKey",date.textContent)
+    localStorage.setItem("priorityTextKey",priorityText.textContent)
+    localStorage.setItem("textKey",text.textContent)
 }
 
-// console.log(priority[i].value)
 
-
-// function getNewTask () {
-//     let li= document.createElement("li");
-//     let inputValue = input.value;
-//     let text = document.createTextNode(inputValue);
-//     li.appendChild(text);
-//     if(inputValue === ""){
-//         alert("write some thing");
-//     }else{
-//     todoList.appendChild(li);
-//     }
-//     input.value = "";
-// }
