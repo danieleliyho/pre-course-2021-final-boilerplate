@@ -10,7 +10,6 @@ document.querySelector("#counter").innerHTML = count;
 add.addEventListener('click',function(){
     getNewTask();
     counter();
-
 })
 let sort = document.getElementById("sort-button");
 
@@ -81,22 +80,36 @@ function sorter(){
     //     console.log(priority.value)
     // }
 }
-function counter(){
-        count +=1
-        document.querySelector("#counter").innerHTML = count;
+window.onload = counter();
 
-}
+console.log(divContainer.length)
 let date = document.getElementsByClassName("todo-created-at")
 let todoContainer = document.getElementsByClassName("todo-container")
 let priorityText = document.getElementsByClassName("todo-priority")
 let text = document.getElementsByClassName("todo-text")
-for(let j = 0; j<localStorage.length; j++){
-let storedDate = localStorage.getItem("dateInputKey"+j)
-let storedPriority = localStorage.getItem("priorityTextKey"+j)
-let storedText = localStorage.getItem("textKey"+j)
-let storedContainer = localStorage.getItem("todoContainer"+j)
-if(todoContainer){
-    todoList.innerHTML += `${storedContainer}<br/>`;
+console.log(localStorage.length/4)
+for(let j = 0; j<localStorage.length/4; j++){
+    let storedDate = localStorage.getItem("dateInputKey"+j)
+    let storedPriority = localStorage.getItem("priorityTextKey"+j)
+    let storedText = localStorage.getItem("textKey"+j)
+    let storedContainer = localStorage.getItem("todoContainer"+j)
+    if(todoContainer){
+        let divContainer = document.createElement("div");
+        let divDate = document.createElement("div");
+        let divPriority = document.createElement("div");
+        let divText = document.createElement("div");
+        divContainer.className = "todo-container";
+        divDate.className = "todo-created-at divInfo";
+        divPriority.className = "todo-priority divInfo";
+        divText.className = "todo-text divInfo";
+        
+        todoList.appendChild(divContainer)
+        divDate.innerHTML += `${storedDate}`;
+        divContainer.appendChild(divDate)
+        divPriority.innerHTML += `${storedPriority}`;
+        divContainer.appendChild(divPriority)
+    divText.innerHTML += `${storedText}`;
+    divContainer.appendChild(divText)
     location.reload
     
     // date.textContent = storedDate
@@ -107,12 +120,15 @@ if(todoContainer){
 
 const saveToLocalStorage = () => {
     for(let i = 0; i<divContainer.length; i++){
-    localStorage.setItem("dateInputKey"+i,date[0].textContent)
-    localStorage.setItem("priorityTextKey"+i,priorityText[0].textContent)
-    localStorage.setItem("textKey"+i,text[0].textContent)
-    localStorage.setItem("todoContainer"+i,todoContainer[0].textContent)
-}
+        localStorage.setItem("dateInputKey"+i,date[0].textContent)
+        localStorage.setItem("priorityTextKey"+i,priorityText[0].textContent)
+        localStorage.setItem("textKey"+i,text[0].textContent)
+        localStorage.setItem("todoContainer"+i,todoContainer[0].textContent)
+    }
 }
 add.addEventListener('click',saveToLocalStorage);
 
+function counter(){
+        document.querySelector("#counter").innerHTML = localStorage.length/4;
+}
 
