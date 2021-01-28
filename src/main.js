@@ -5,7 +5,7 @@ let input = document.getElementById("text-input");
 let priority = document.getElementById("priority-selector")
 let count = 0
 let divContainer = document.getElementsByClassName("todo-container");
-document.querySelector("#counter").innerHTML = count;
+
 
 add.addEventListener('click',function(){
     getNewTask();
@@ -72,7 +72,6 @@ function sorter(){
             }
         }
     }
-    console.log(priority[0].textContent)
 
     
     // for(let x = 0; x<divContainer.length; x++){
@@ -80,14 +79,17 @@ function sorter(){
     //     console.log(priority.value)
     // }
 }
-window.onload = counter();
-
-console.log(divContainer.length)
+function counter(){
+        document.querySelector("#counter").innerHTML = divContainer.length;
+}
+function counterOnLoad(){
+        document.querySelector("#counter").innerHTML = localStorage.length/4;
+}
+window.onload = counterOnLoad();
 let date = document.getElementsByClassName("todo-created-at")
 let todoContainer = document.getElementsByClassName("todo-container")
 let priorityText = document.getElementsByClassName("todo-priority")
 let text = document.getElementsByClassName("todo-text")
-console.log(localStorage.length/4)
 for(let j = 0; j<localStorage.length/4; j++){
     let storedDate = localStorage.getItem("dateInputKey"+j)
     let storedPriority = localStorage.getItem("priorityTextKey"+j)
@@ -120,15 +122,15 @@ for(let j = 0; j<localStorage.length/4; j++){
 
 const saveToLocalStorage = () => {
     for(let i = 0; i<divContainer.length; i++){
-        localStorage.setItem("dateInputKey"+i,date[0].textContent)
-        localStorage.setItem("priorityTextKey"+i,priorityText[0].textContent)
-        localStorage.setItem("textKey"+i,text[0].textContent)
-        localStorage.setItem("todoContainer"+i,todoContainer[0].textContent)
+        localStorage.setItem("dateInputKey"+i,date[i].textContent)
+        localStorage.setItem("priorityTextKey"+i,priorityText[i].textContent)
+        localStorage.setItem("textKey"+i,text[i].textContent)
+        localStorage.setItem("todoContainer"+i,todoContainer[i].textContent)
     }
 }
+
 add.addEventListener('click',saveToLocalStorage);
 
-function counter(){
-        document.querySelector("#counter").innerHTML = localStorage.length/4;
-}
+
+
 
