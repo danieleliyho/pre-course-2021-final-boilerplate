@@ -57,7 +57,7 @@ function getNewTask(){
 }input.value = "";
 }
 function sorter(){
-    divContainer = document.getElementsByClassName("todo-container");
+    let divContainer = document.getElementsByClassName("todo-container");
     let priority = document.getElementsByClassName("todo-priority");
 
     console.log(priority[0].textContent)
@@ -90,15 +90,19 @@ let date = document.getElementsByClassName("todo-created-at")
 let todoContainer = document.getElementsByClassName("todo-container")
 let priorityText = document.getElementsByClassName("todo-priority")
 let text = document.getElementsByClassName("todo-text")
-let storedDate = localStorage.getItem("dateInputKey0")
-let storedPriority = localStorage.getItem("priorityTextKey0")
-let storedText = localStorage.getItem("textKey0")
-let storedContainer = localStorage.getItem("todoContainer0")
-if(date[0] || priorityText[0] || text[0]){
-    todoContainer[0].textContent = storedContainer 
-    date.textContent = storedDate
-    priorityText.textContent = storedPriority
-    text.textContent = storedText
+for(let j = 0; j<localStorage.length; j++){
+let storedDate = localStorage.getItem("dateInputKey"+j)
+let storedPriority = localStorage.getItem("priorityTextKey"+j)
+let storedText = localStorage.getItem("textKey"+j)
+let storedContainer = localStorage.getItem("todoContainer"+j)
+if(todoContainer){
+    todoList.innerHTML += `${storedContainer}<br/>`;
+    location.reload
+    
+    // date.textContent = storedDate
+    // priorityText.textContent = storedPriority
+    // text.textContent = storedText
+}
 }
 
 const saveToLocalStorage = () => {
