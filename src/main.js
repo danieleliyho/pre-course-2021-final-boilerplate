@@ -4,12 +4,13 @@ let todoList = document.getElementById('todo-list');
 let input = document.getElementById("text-input");
 let priority = document.getElementById("priority-selector")
 let count = 0
+let divContainer = document.getElementsByClassName("todo-container");
 document.querySelector("#counter").innerHTML = count;
 
-add.addEventListener("click",function(){
+add.addEventListener('click',function(){
     getNewTask();
     counter();
-    add.addEventListener('input',saveToLocalStorage);
+
 })
 let sort = document.getElementById("sort-button");
 
@@ -56,7 +57,7 @@ function getNewTask(){
 }input.value = "";
 }
 function sorter(){
-    let divContainer = document.getElementsByClassName("todo-container");
+    divContainer = document.getElementsByClassName("todo-container");
     let priority = document.getElementsByClassName("todo-priority");
 
     console.log(priority[0].textContent)
@@ -85,13 +86,29 @@ function counter(){
         document.querySelector("#counter").innerHTML = count;
 
 }
-let date = document.querySelector(".todo-created-at")
-let priorityText = document.querySelector(".todo-priority")
-let text = document.querySelector(".todo-text")
-const saveToLocalStorage = () => {
-    localStorage.setItem("textInputKey",date.textContent)
-    localStorage.setItem("priorityTextKey",priorityText.textContent)
-    localStorage.setItem("textKey",text.textContent)
+let date = document.getElementsByClassName("todo-created-at")
+let todoContainer = document.getElementsByClassName("todo-container")
+let priorityText = document.getElementsByClassName("todo-priority")
+let text = document.getElementsByClassName("todo-text")
+let storedDate = localStorage.getItem("dateInputKey0")
+let storedPriority = localStorage.getItem("priorityTextKey0")
+let storedText = localStorage.getItem("textKey0")
+let storedContainer = localStorage.getItem("todoContainer0")
+if(date[0] || priorityText[0] || text[0]){
+    todoContainer[0].textContent = storedContainer 
+    date.textContent = storedDate
+    priorityText.textContent = storedPriority
+    text.textContent = storedText
 }
+
+const saveToLocalStorage = () => {
+    for(let i = 0; i<divContainer.length; i++){
+    localStorage.setItem("dateInputKey"+i,date[0].textContent)
+    localStorage.setItem("priorityTextKey"+i,priorityText[0].textContent)
+    localStorage.setItem("textKey"+i,text[0].textContent)
+    localStorage.setItem("todoContainer"+i,todoContainer[0].textContent)
+}
+}
+add.addEventListener('click',saveToLocalStorage);
 
 
