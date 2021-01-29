@@ -135,28 +135,22 @@ for(let j = 0; j<localStorage.length/4; j++){
             localStorage.removeItem("textKey"+j);
             localStorage.removeItem("todoContainer"+j);
             location.reload
-            counter();
         })
         location.reload
 }
 }
-let a = localStorage.length/4
+
 const saveToLocalStorage = () => {
-    if(localStorage.length/4 === 0){
     for(let i = 0; i<divContainer.length; i++){
         localStorage.setItem("dateInputKey"+i,date[i].textContent)
         localStorage.setItem("priorityTextKey"+i,priorityText[i].textContent)
         localStorage.setItem("textKey"+i,text[i].textContent)
         localStorage.setItem("todoContainer"+i,todoContainer[i].textContent)
-    }}else if(localStorage.length/4 !== 0){
-        for(let i = a; i<divContainer.length; i++){
-            localStorage.setItem("dateInputKey"+i,date[i].textContent)
-            localStorage.setItem("priorityTextKey"+i,priorityText[i].textContent)
-            localStorage.setItem("textKey"+i,text[i].textContent)
-            localStorage.setItem("todoContainer"+i,todoContainer[i].textContent)
     }
-}}
-let saver = document.querySelector("#saver")
+}
 
-saver.addEventListener('click',saveToLocalStorage);
+add.addEventListener('click',saveToLocalStorage);
+
+
+
 
