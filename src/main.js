@@ -35,6 +35,7 @@ function getNewTask(){
     let text = document.createTextNode(inputValue);
     let priorityText = document.createTextNode(priorityValue);
     let dateSql = document.createTextNode(getDate());
+    let deleterText = document.createTextNode("delete")
     if(inputValue === ""){
         alert("please write some thing");
     }else{
@@ -42,12 +43,18 @@ function getNewTask(){
         let divDate = document.createElement("div");
         let divPriority = document.createElement("div");
         let divText = document.createElement("div");
+        let deleterDiv = document.createElement("div");
+        let deleter = document.createElement("button");
         divContainer.className = "todo-container";
         divDate.className = "todo-created-at divInfo";
+        deleterDiv.className = "deleter divInfo";
         divPriority.className = "todo-priority divInfo";
         divText.className = "todo-text divInfo";
         todoList.appendChild(divContainer);
         divContainer.appendChild(divDate);
+        divContainer.appendChild(deleterDiv);
+        deleterDiv.appendChild(deleter);
+        deleter.appendChild(deleterText);
         divContainer.appendChild(divPriority);
         divContainer.appendChild(divText);
         divText.appendChild(text)
@@ -86,6 +93,7 @@ function counterOnLoad(){
         document.querySelector("#counter").innerHTML = localStorage.length/4;
 }
 window.onload = counterOnLoad();
+
 let date = document.getElementsByClassName("todo-created-at")
 let todoContainer = document.getElementsByClassName("todo-container")
 let priorityText = document.getElementsByClassName("todo-priority")
@@ -100,7 +108,11 @@ for(let j = 0; j<localStorage.length/4; j++){
         let divDate = document.createElement("div");
         let divPriority = document.createElement("div");
         let divText = document.createElement("div");
+        let deleterText = document.createTextNode("delete")
+        let deleterDiv = document.createElement("div");
+        let deleter = document.createElement("button");
         divContainer.className = "todo-container";
+        deleterDiv.className = "deleter divInfo";
         divDate.className = "todo-created-at divInfo";
         divPriority.className = "todo-priority divInfo";
         divText.className = "todo-text divInfo";
@@ -110,13 +122,13 @@ for(let j = 0; j<localStorage.length/4; j++){
         divContainer.appendChild(divDate)
         divPriority.innerHTML += `${storedPriority}`;
         divContainer.appendChild(divPriority)
-    divText.innerHTML += `${storedText}`;
-    divContainer.appendChild(divText)
-    location.reload
-    
-    // date.textContent = storedDate
-    // priorityText.textContent = storedPriority
-    // text.textContent = storedText
+        divText.innerHTML += `${storedText}`;
+        divContainer.appendChild(divText);
+        divContainer.appendChild(deleterDiv);
+        deleterDiv.appendChild(deleter);
+        deleter.appendChild(deleterText);
+        deleterText.innerHTML += "delete";
+        location.reload
 }
 }
 
