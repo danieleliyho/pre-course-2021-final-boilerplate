@@ -47,7 +47,8 @@ function getNewTask(){
         let deleter = document.createElement("button");
         divContainer.className = "todo-container";
         divDate.className = "todo-created-at divInfo";
-        deleterDiv.className = "deleter divInfo";
+        deleterDiv.className = "divInfo";
+        deleter.className = "deleter";
         divPriority.className = "todo-priority divInfo";
         divText.className = "todo-text divInfo";
         todoList.appendChild(divContainer);
@@ -61,6 +62,10 @@ function getNewTask(){
         divPriority.appendChild(priorityText)
         divDate.appendChild(dateSql)
 }input.value = "";
+}
+function remover(){
+    let deleter = document.querySelector(".deleter");
+    let divContainer = document.getElementsByClassName("todo-container"); 
 }
 function sorter(){
     let divContainer = document.getElementsByClassName("todo-container");
@@ -79,12 +84,6 @@ function sorter(){
             }
         }
     }
-
-    
-    // for(let x = 0; x<divContainer.length; x++){
-    //     todoList.appendChild(divContainer[x]);
-    //     console.log(priority.value)
-    // }
 }
 function counter(){
         document.querySelector("#counter").innerHTML = divContainer.length;
@@ -112,7 +111,8 @@ for(let j = 0; j<localStorage.length/4; j++){
         let deleterDiv = document.createElement("div");
         let deleter = document.createElement("button");
         divContainer.className = "todo-container";
-        deleterDiv.className = "deleter divInfo";
+        deleterDiv.className = " divInfo";
+        deleter.className = "deleter";
         divDate.className = "todo-created-at divInfo";
         divPriority.className = "todo-priority divInfo";
         divText.className = "todo-text divInfo";
@@ -128,21 +128,35 @@ for(let j = 0; j<localStorage.length/4; j++){
         deleterDiv.appendChild(deleter);
         deleter.appendChild(deleterText);
         deleterText.innerHTML += "delete";
+        deleter.addEventListener('click',function(){
+            divContainer.parentNode.removeChild(divContainer);
+            localStorage.removeItem("dateInputKey"+j);
+            localStorage.removeItem("priorityTextKey"+j);
+            localStorage.removeItem("textKey"+j);
+            localStorage.removeItem("todoContainer"+j);
+            location.reload
+            counter();
+        })
         location.reload
 }
 }
-
+let a = localStorage.length/4
 const saveToLocalStorage = () => {
+    if(localStorage.length/4 === 0){
     for(let i = 0; i<divContainer.length; i++){
         localStorage.setItem("dateInputKey"+i,date[i].textContent)
         localStorage.setItem("priorityTextKey"+i,priorityText[i].textContent)
         localStorage.setItem("textKey"+i,text[i].textContent)
         localStorage.setItem("todoContainer"+i,todoContainer[i].textContent)
+    }}else if(localStorage.length/4 !== 0){
+        for(let i = a; i<divContainer.length; i++){
+            localStorage.setItem("dateInputKey"+i,date[i].textContent)
+            localStorage.setItem("priorityTextKey"+i,priorityText[i].textContent)
+            localStorage.setItem("textKey"+i,text[i].textContent)
+            localStorage.setItem("todoContainer"+i,todoContainer[i].textContent)
     }
-}
+}}
+let saver = document.querySelector("#saver")
 
-add.addEventListener('click',saveToLocalStorage);
-
-
-
+saver.addEventListener('click',saveToLocalStorage);
 
