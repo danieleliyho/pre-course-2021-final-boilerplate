@@ -1,6 +1,21 @@
-.divInfo{
-    display: inline;
+.divInfo + .divInfo{
+    display :inline-flex;
+    margin-left: 10px;
+
 }
 .done{
     text-decoration: line-through;
+}
+.todo-container{
+    text-align: center;
+    margin-top: 50px;
+}
+.head{
+    text-align: center;
+}
+section{
+    text-align: center;
+}
+.todo-text{
+    flex: auto;
 }

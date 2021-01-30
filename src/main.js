@@ -74,7 +74,7 @@ function createContainer(text,priorityText,dateSql,checkboxBool){
     
     deleter.className = "deleter";
     divDeleter.className = "divDeleter divInfo";
-    checkbox.className = "checkbox";
+    checkbox.className = "checkbox " ;
     divCheckbox.className = "divCheckbox divInfo";
     editer.className = "editer";
     divEditer.className = "divEditer divInfo";
