@@ -29,43 +29,113 @@ function getDate(){
         return date
     }
 
-function getNewTask(){
-    let inputValue = input.value;
-    let priorityValue = priority.value;
-    let text = document.createTextNode(inputValue);
-    let priorityText = document.createTextNode(priorityValue);
-    let dateSql = document.createTextNode(getDate());
-    let deleterText = document.createTextNode("delete")
-    if(inputValue === ""){
+function getNewTask(data=null){
+    let i_value = null
+    let text = null
+    let priorityText = null
+    let dateSql = null
+    let checkboxBool = false;
+    if(!data){
+        i_value = input.value
+        text = document.createTextNode(i_value);
+        priorityText = document.createTextNode( priority.value);
+        dateSql = document.createTextNode(getDate());
+    } else if (data){
+        i_value = data.text
+        text = document.createTextNode(i_value);
+        priorityText = document.createTextNode(data.priority);
+        dateSql = document.createTextNode(data.date);
+        checkboxBool = Boolean(data.checkbox)
+    }
+    if(!i_value){
         alert("please write some thing");
     }else{
-        let divContainer = document.createElement("div");
-        let divDate = document.createElement("div");
-        let divPriority = document.createElement("div");
-        let divText = document.createElement("div");
-        let deleterDiv = document.createElement("div");
-        let deleter = document.createElement("button");
-        divContainer.className = "todo-container";
-        divDate.className = "todo-created-at divInfo";
-        deleterDiv.className = "divInfo";
-        deleter.className = "deleter";
-        divPriority.className = "todo-priority divInfo";
-        divText.className = "todo-text divInfo";
-        todoList.appendChild(divContainer);
-        divContainer.appendChild(divDate);
-        divContainer.appendChild(deleterDiv);
-        deleterDiv.appendChild(deleter);
-        deleter.appendChild(deleterText);
-        divContainer.appendChild(divPriority);
-        divContainer.appendChild(divText);
-        divText.appendChild(text)
-        divPriority.appendChild(priorityText)
-        divDate.appendChild(dateSql)
+        createContainer(text,priorityText,dateSql,checkboxBool)
+
 }input.value = "";
 }
-function remover(){
-    let deleter = document.querySelector(".deleter");
-    let divContainer = document.getElementsByClassName("todo-container"); 
+function createContainer(text,priorityText,dateSql,checkboxBool){
+    let divContainer = document.createElement("div");
+    let divDate = document.createElement("div");
+    let divPriority = document.createElement("div");
+    let divText = document.createElement("div");
+    let divDeleter = document.createElement("div");
+    let divCheckbox = document.createElement("div");
+    let deleter = document.createElement("button");
+    let checkbox = document.createElement("input");
+    let divEditer = document.createElement("div");
+    let editer = document.createElement("button");
+    if(checkboxBool){
+        divContainer.className = "done todo-container";
+        checkbox.checked = checkboxBool
+    }else{
+        divContainer.className = "todo-container";
+    }
+    
+    deleter.className = "deleter";
+    divDeleter.className = "divDeleter divInfo";
+    checkbox.className = "checkbox";
+    divCheckbox.className = "divCheckbox divInfo";
+    editer.className = "editer";
+    divEditer.className = "divEditer divInfo";
+    divDate.className = "todo-created-at divInfo";
+    divPriority.className = "todo-priority divInfo";
+    divText.className = "todo-text divInfo";
+    todoList.appendChild(divContainer);
+    divContainer.appendChild(divCheckbox);
+    divCheckbox.appendChild(checkbox);
+    divContainer.appendChild(divDate);
+    divContainer.appendChild(divPriority);
+    divContainer.appendChild(divText);
+    divText.appendChild(text)
+    divPriority.appendChild(priorityText)
+    divDate.appendChild(dateSql)
+    divContainer.appendChild(divDeleter);
+    divDeleter.appendChild(deleter);
+    deleter.textContent = "Remove"
+    divContainer.appendChild(divEditer);
+    divEditer.appendChild(editer);
+    checkbox.setAttribute("type", "checkbox");
+    editer.textContent = "Edit"
+    checkbox.addEventListener('click',function(){
+        if(!checkbox.checked){
+            divContainer.className = "todo-container";
+        }
+        else{
+            divContainer.className = "done todo-container";
+        }
+        setPersistent(getInfo());
+    })
+    deleter.addEventListener('click',function(){
+        removeRow(divContainer)
+    })
+    editer.addEventListener('click',function(){
+        let output = prompt("edit your todo",text.textContent);
+        text.textContent = output
+        setPersistent(getInfo());
+    })
+}
+function removeRow(divContainer){
+    divContainer.remove();
+    setPersistent(getInfo());
+    counter();
+}
+
+function getInfo(){
+    let info = {'my-todo': []};
+    for(let i = 0; i<divContainer.length; i++){
+        let checkboxValue = document.getElementsByClassName("checkbox")[i].checked;
+        let inputValue = document.getElementsByClassName("todo-text")[i].textContent;
+        let priorityValue = document.getElementsByClassName("todo-priority")[i].textContent;
+        let dateInput = document.getElementsByClassName("todo-created-at")[i].textContent;
+        info['my-todo'].push({"text" : inputValue ,
+        "priority" : priorityValue ,
+        "date" : dateInput ,
+        "checkbox" : checkboxValue});
+    
+    }
+
+    return info
 }
 function sorter(){
     let divContainer = document.getElementsByClassName("todo-container");
@@ -88,68 +158,13 @@ function sorter(){
 function counter(){
         document.querySelector("#counter").innerHTML = divContainer.length;
 }
-function counterOnLoad(){
-        document.querySelector("#counter").innerHTML = localStorage.length/4;
-}
-window.onload = counterOnLoad();
 
-let date = document.getElementsByClassName("todo-created-at")
-let todoContainer = document.getElementsByClassName("todo-container")
-let priorityText = document.getElementsByClassName("todo-priority")
-let text = document.getElementsByClassName("todo-text")
-for(let j = 0; j<localStorage.length/4; j++){
-    let storedDate = localStorage.getItem("dateInputKey"+j)
-    let storedPriority = localStorage.getItem("priorityTextKey"+j)
-    let storedText = localStorage.getItem("textKey"+j)
-    let storedContainer = localStorage.getItem("todoContainer"+j)
-    if(todoContainer){
-        let divContainer = document.createElement("div");
-        let divDate = document.createElement("div");
-        let divPriority = document.createElement("div");
-        let divText = document.createElement("div");
-        let deleterText = document.createTextNode("delete")
-        let deleterDiv = document.createElement("div");
-        let deleter = document.createElement("button");
-        divContainer.className = "todo-container";
-        deleterDiv.className = " divInfo";
-        deleter.className = "deleter";
-        divDate.className = "todo-created-at divInfo";
-        divPriority.className = "todo-priority divInfo";
-        divText.className = "todo-text divInfo";
-        
-        todoList.appendChild(divContainer)
-        divDate.innerHTML += `${storedDate}`;
-        divContainer.appendChild(divDate)
-        divPriority.innerHTML += `${storedPriority}`;
-        divContainer.appendChild(divPriority)
-        divText.innerHTML += `${storedText}`;
-        divContainer.appendChild(divText);
-        divContainer.appendChild(deleterDiv);
-        deleterDiv.appendChild(deleter);
-        deleter.appendChild(deleterText);
-        deleterText.innerHTML += "delete";
-        deleter.addEventListener('click',function(){
-            divContainer.parentNode.removeChild(divContainer);
-            localStorage.removeItem("dateInputKey"+j);
-            localStorage.removeItem("priorityTextKey"+j);
-            localStorage.removeItem("textKey"+j);
-            localStorage.removeItem("todoContainer"+j);
-            location.reload
-        })
-        location.reload
-}
-}
 
-const saveToLocalStorage = () => {
-    for(let i = 0; i<divContainer.length; i++){
-        localStorage.setItem("dateInputKey"+i,date[i].textContent)
-        localStorage.setItem("priorityTextKey"+i,priorityText[i].textContent)
-        localStorage.setItem("textKey"+i,text[i].textContent)
-        localStorage.setItem("todoContainer"+i,todoContainer[i].textContent)
-    }
-}
 
-add.addEventListener('click',saveToLocalStorage);
+// let saveTodoInJsonBin = (todoList) => {
+//     await fetch("https://api.jsonbin.io/v3/b/601453a6ef99c57c734ba864",{method:"put",headers: {"Content-Type": "application/json",},body: JSON.stringify(tasks)});
+
+// }
 
 
 
