@@ -14,7 +14,8 @@ add.addEventListener('click',function(){
 let sort = document.getElementById("sort-button");
 
 sort.addEventListener("click",function(){
-sorter()
+sorter();
+setPersistent(getInfo());
 })
 
 function getDate(){

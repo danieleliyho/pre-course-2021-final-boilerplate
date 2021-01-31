@@ -1,4 +1,7 @@
-.divInfo + .divInfo{
+body{
+    background-color: rgb(115, 115, 184);
+}
+.divInfo{
     display :inline-flex;
     margin-left: 10px;
 
@@ -9,6 +12,7 @@
 .todo-container{
     text-align: center;
     margin-top: 50px;
+    width: auto;
 }
 .head{
     text-align: center;
@@ -19,3 +23,23 @@ section{
 .todo-text{
     flex: auto;
 }
+.done{
+    color: gray;
+}
+
+.todo-container:hover{
+    background-color: deepskyblue;
+    cursor: pointer;
+    animation-name: example;
+    animation-duration: 4s;
+}
+@keyframes example {
+    from {background-color: rgb(115, 115, 184);}
+    to {background-color: deepskyblue;}
+  }
+  ul{
+      border: solid ;
+      border-width: 0px;
+      margin-left: 550px;
+      margin-right: 550px;
+  }
