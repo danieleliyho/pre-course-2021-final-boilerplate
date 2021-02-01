@@ -139,6 +139,16 @@ body{
         font-size:20px;
         color: white;
       }
+      #myInput {
+        display: inline-block;
+        border: 1px solid #ddd;
+        margin-bottom: 11px;
+        margin-left: -22px;
+        margin-top: 10px;
+      }
+      a{
+        color: white;
+      }
     /* .darkDeleter{
       background-color:rgb(31 31 35);;
       border: none;

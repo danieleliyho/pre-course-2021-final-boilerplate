@@ -57,6 +57,7 @@ function getNewTask(data=null){
 }
 function createContainer(text,priorityText,dateSql,checkboxBool){
     let divContainer = document.createElement("div");
+    let a = document.createElement("a");
     let divDate = document.createElement("div");
     let divPriority = document.createElement("div");
     let divText = document.createElement("div");
@@ -75,6 +76,7 @@ function createContainer(text,priorityText,dateSql,checkboxBool){
     }
     
     deleter.className = "deleter";
+    a.href ="#";
     divDeleter.className = "divDeleter divInfo";
     divContainer.className = "todo-container";
     checkbox.className = "checkbox " ;
@@ -91,7 +93,8 @@ function createContainer(text,priorityText,dateSql,checkboxBool){
     divContainer.appendChild(divDate);
     divContainer.appendChild(divPriority);
     divContainer.appendChild(divText);
-    divText.appendChild(text)
+    divText.appendChild(a);
+    a.appendChild(text);
     divPriority.appendChild(priorityText)
     divDate.appendChild(dateSql)
     li.appendChild(divDeleter);
@@ -182,6 +185,25 @@ function toggleTheme(value) {
 
     sheets[0].href = value; 
 } 
+function myFunction() {
+    // Declare variables
+    let input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById('myInput');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("todo-list");
+    li = ul.getElementsByTagName('li');
+  
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+      a = li[i].getElementsByTagName("a")[0];
+      txtValue = a.textContent || a.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        li[i].style.display = "";
+      } else {
+        li[i].style.display = "none";
+      }
+    }
+  }
 
 
 
