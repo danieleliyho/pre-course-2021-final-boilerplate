@@ -6,9 +6,6 @@ let priority = document.getElementById("priority-selector")
 let count = 0
 let divContainer = document.getElementsByClassName("todo-container");
 let li = document.getElementsByTagName("li");
-let header = document.getElementById("header")
-let all = document.getElementById("all");
-
 
 
 add.addEventListener('click',function(){
@@ -70,18 +67,11 @@ function createContainer(text,priorityText,dateSql,checkboxBool){
     let checkbox = document.createElement("input");
     let divEditer = document.createElement("div");
     let editer = document.createElement("button");
-    if(checkboxBool && all.className !== "darkAll"){
+    if(checkboxBool){
         li.className = "done";
         checkbox.checked = checkboxBool
-    }else if(!checkboxBool){
+    }else{
         li.className = "";
-    }
-    else if(checkboxBool && all.className === "darkAll"){
-        li.className = "darkDone darkLi";
-        checkbox.checked = checkboxBool
-    }
-    if(!checkboxBool && all.className === "darkAll"){
-        li.className = "darkLi";
     }
     
     deleter.className = "deleter";
@@ -111,19 +101,12 @@ function createContainer(text,priorityText,dateSql,checkboxBool){
     checkbox.setAttribute("type", "checkbox");
     editer.textContent = "Edit"
     checkbox.addEventListener('click',function(){
-        if(!checkbox.checked && all.className !== "darkAll"){
+        if(!checkbox.checked){
             li.className = "";
             
         }
-        else if(!checkbox.checked && all.className !== "darkAll"){
+        else{
             li.className = "done";
-        }
-        if(!checkbox.checked && all.className === "darkAll"){
-            li.className = "darkLi";
-            
-        }
-        else if(!checkbox.checked && all.className === "darkAll"){
-            li.className = "darkDone darkLi";
         }
         counter()
         setPersistent(getInfo());
@@ -135,32 +118,6 @@ function createContainer(text,priorityText,dateSql,checkboxBool){
         let output = prompt("edit your todo",text.textContent);
         text.textContent = output
         setPersistent(getInfo());
-    })
-    let dark = document.getElementById("dark");
-    dark.addEventListener('click',function(){
-        deleter.className = "darkDeleter";
-        divDeleter.className = "divDeleter divInfo";
-        divContainer.className = "todo-container";
-        checkbox.className = "checkbox " ;
-        divCheckbox.className = "divCheckbox divInfo";
-        editer.className = "darkEditer";
-        divEditer.className = "divEditer divInfo";
-        divDate.className = "todo-created-at divInfo";
-        divPriority.className = "todo-priority divInfo";
-        divText.className = "todo-text divInfo";
-        divText.className = "todo-text divInfo";
-        all.className = "darkAll"
-        header.setAttribute("id", "darkHeader");
-        todoList.setAttribute("id", "darkTodo-List");
-        let darkLi = document.getElementsByTagName("li");
-        if(!checkbox.checked){
-            li.className = "darkLi";
-            
-        }else{
-            li.className = "darkDone darkLi";
-        }
-
-
     })
 }
 function removeRow(li){
