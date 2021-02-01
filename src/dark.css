@@ -113,10 +113,13 @@ body{
       background-color: #f3b4755c;
     }
     @media screen and (max-width: 600px){
+      li{
+        font-size: 70%;
+      }
       #header{
           width: 100%;
         }
-      ul{
+        #todo-list{
           width: 100%;
         }
     }
