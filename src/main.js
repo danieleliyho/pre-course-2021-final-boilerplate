@@ -142,6 +142,14 @@ function getInfo(){
 
     return info
 }
+window.addEventListener("keydown",checkKeyPress,false);
+function checkKeyPress(key){
+    if(key.keyCode == "13"){
+        getNewTask();
+        counter();
+        setPersistent(getInfo());
+    }
+}
 function sorter(){
     let divContainer = document.getElementsByClassName("todo-container");
     let priority = document.getElementsByClassName("todo-priority");
