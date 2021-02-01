@@ -6,12 +6,11 @@ body{
     margin-left: 10px;
 
 }
-.done{
-    text-decoration: line-through;
-}
+
 .todo-container{
     text-align: center;
-    margin-top: 50px;
+    margin :0px;
+    padding: 0px;
     width: auto;
 }
 .head{
@@ -25,21 +24,211 @@ section{
 }
 .done{
     color: gray;
+    background-color: deepskyblue;
+    text-decoration: line-through;
 }
 
-.todo-container:hover{
+li:hover{
     background-color: deepskyblue;
     cursor: pointer;
     animation-name: example;
-    animation-duration: 4s;
+    animation-duration: 2.8s;
 }
 @keyframes example {
-    from {background-color: rgb(115, 115, 184);}
+    from {background-color: rgb(196 196 222);}
     to {background-color: deepskyblue;}
   }
-  ul{
-      border: solid ;
-      border-width: 0px;
-      margin-left: 550px;
-      margin-right: 550px;
+  #todo-list{
+    border: solid;
+    border-width: 0px;
+    margin: auto;
+    height: 100vh;
+    width: 60%;
+    padding-inline-start: 0px;
+    background-color: rgb(196 196 222);
+    margin-top: 0px;
+    padding-top: 10px;
+    
   }
+
+  li{
+    margin: auto;
+    font-size: 18px;
+    border-bottom: 1px solid rgb(0, 0, 0);
+    display: flex;
+    justify-content: space-between;
+  }
+  .deleter{
+    background-color:rgb(196 196 222);
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 18px;
+    height: 40px
+  }
+  .deleter:hover{
+    background-color:rgb(250, 49, 49);
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    animation-name: deleter;
+    animation-duration: 2.8s;
+  }
+  @keyframes deleter {
+    from {background-color:rgb(196 196 222);}
+    to {background-color:rgb(250, 49, 49);}
+  }
+  .editer{
+    background-color:rgb(196 196 222);
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 18px;
+    height: 40px
+  }
+  .editer:hover{
+    background-color:rgb(196 196 222);
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    animation-name: editer;
+    animation-duration: 2.8s;
+  }
+  @keyframes editer {
+    from {background-color:rgb(196 196 222);}
+    to {background-color : deepskyblue;}
+  }
+  #top{
+      text-align: center;
+  }
+  #header{
+    border: solid;
+    border-width: 0px;
+    margin: auto;
+    height: 100%;
+    width: 60%;
+    padding-inline-start: 0px;
+    background-color: rgb(176, 176, 255);
+  }
+  @media screen and (max-width: 600px){
+    #header{
+        width: 100%;
+      }
+    ul{
+        width: 100%;
+      }
+  }
+  .darkDeleter{
+    background-color:rgb(31 31 35);;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 18px;
+    height: 40px
+  }
+  .darkDeleter:hover{
+    background-color:rgb(31 31 35);
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    animation-name: darkDeleter;
+    animation-duration: 2.8s;
+  }
+  @keyframes darkDeleter {
+    from {background-color:rgb(31 31 35);}
+    to {background-color:rgb(65, 23, 23);}
+  }
+  .darkEditer{
+    background-color:rgb(31 31 35);
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 18px;
+    height: 40px
+  }
+  .darkEditer:hover{
+    background-color:rgb(31 31 35);
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    animation-name: darkEditer;
+    animation-duration: 2.8s;
+  }
+  @keyframes darkEditer {
+    from {background-color:rgb(31 31 35);}
+    to {background-color : #123d4c5c;}
+  }
+  .darkAll{
+    background-color:black;
+    color: white;
+    position: relative;
+    margin-top: -8px;
+    margin-bottom: -8px;
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+  #dark {
+    margin-left: -8px;
+  }
+  #darkHeader{
+    border: solid;
+    border-width: 0px;
+    margin: auto;
+    height: 100%;
+    width: 60%;
+    padding-inline-start: 0px;
+    background-color: rgb(18 18 33);
+  }
+ #darkTodo-List{
+    border: solid;
+    border-width: 0px;
+    margin: auto;
+    height: 100vh;
+    width: 60%;
+    padding-inline-start: 0px;
+    background-color:  rgb(31 31 35);
+    margin-top: 0px;
+    padding-top: 10px;
+  }
+  .darkLi:hover{
+    background-color: rgb(31 31 35);
+    cursor: pointer;
+    animation-name: darkLi;
+    animation-duration: 2.8s;
+}
+@keyframes darkLi {
+    from {background-color: rgb(31 31 35);}
+    to {background-color: #123d4c5c;}
+  }
+  .darkDone{
+    color: gray;
+    background-color:#123d4c5c;;
+    text-decoration: line-through;
+  }
+
+  
+

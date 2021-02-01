@@ -5,30 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My TODO List</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-replace-svg="nest"></script>
   </head>
   <body>
-    <div class="head">
-      <h2><span id="counter"></span> TODOs</h2>
-    </div>
-    <section id="Control ">
-      <button id="sort-button">sort</button>
-      <input type="text" id="text-input">
-      <select name="" id="priority-selector">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
-      <button id="add-button">add</button>
-      <i class="fa fa-check" aria-hidden="true"></i>
-    </section>
-    <section id="view">
-      <ul id="todo-list">
-      </ul>
-    </section>
-    <script src="main.js"></script>
-    <script src="utils.js"></script>
+    <div id="all">
+      <button id="dark">dark</button>
+      <header id="header">
+        <h1 id="top">My To-do List</h1>
+        <div class="head">
+          <h2><span id="counter"></span> TODOs</h2>
+        </div>
+        <section id="Control ">
+          <button id="sort-button">sort</button>
+          <input type="text" id="text-input">
+          <select name="" id="priority-selector">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <button id="add-button"><i class="fas fa-plus-circle"></i></button>
+        </section>
+      </header>
+      <section id="view">
+        <ul id="todo-list">
+        </ul>
+      </section>
+      <script src="main.js"></script>
+      <script src="utils.js"></script>
+  </div>
   </body>
   </html>
   
