@@ -1,5 +1,9 @@
 body{
-    background-color: rgb(115, 115, 184);
+  background: linear-gradient(
+    0.25turn
+    , #f69d3c, #ebf8e1, #f69d3c);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
 }
 .divInfo{
     display :inline-flex;
@@ -24,19 +28,19 @@ section{
 }
 .done{
     color: gray;
-    background-color: deepskyblue;
+    background-color: rgb(193 164 97);
     text-decoration: line-through;
 }
 
 li:hover{
-    background-color: deepskyblue;
+    background-color: rgb(193 164 97);
     cursor: pointer;
     animation-name: example;
     animation-duration: 2.8s;
 }
 @keyframes example {
-    from {background-color: rgb(196 196 222);}
-    to {background-color: deepskyblue;}
+    from {background-color: rgb(211 180 143);}
+    to {background-color: rgb(193 164 97);}
   }
   #todo-list{
     border: solid;
@@ -45,7 +49,7 @@ li:hover{
     height: 100vh;
     width: 60%;
     padding-inline-start: 0px;
-    background-color: rgb(196 196 222);
+    background-color: #ffac53;
     margin-top: 0px;
     padding-top: 10px;
     
@@ -59,7 +63,7 @@ li:hover{
     justify-content: space-between;
   }
   .deleter{
-    background-color:rgb(196 196 222);
+    background-image: url(wood-pattern-1920x1080.png);
     border: none;
     color: white;
     text-align: center;
@@ -70,22 +74,15 @@ li:hover{
     height: 40px
   }
   .deleter:hover{
-    background-color:rgb(250, 49, 49);
+    color:  #ffac53;
     border: none;
-    color: white;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
-    animation-name: deleter;
-    animation-duration: 2.8s;
-  }
-  @keyframes deleter {
-    from {background-color:rgb(196 196 222);}
-    to {background-color:rgb(250, 49, 49);}
   }
   .editer{
-    background-color:rgb(196 196 222);
+    background-image: url(wood-pattern-1920x1080.png);
     border: none;
     color: white;
     text-align: center;
@@ -96,19 +93,12 @@ li:hover{
     height: 40px
   }
   .editer:hover{
-    background-color:rgb(196 196 222);
     border: none;
-    color: white;
+    color:  #ffac53;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
-    animation-name: editer;
-    animation-duration: 2.8s;
-  }
-  @keyframes editer {
-    from {background-color:rgb(196 196 222);}
-    to {background-color : deepskyblue;}
   }
   #top{
       text-align: center;
@@ -120,7 +110,7 @@ li:hover{
     height: 100%;
     width: 60%;
     padding-inline-start: 0px;
-    background-color: rgb(176, 176, 255);
+    background-color: #efa453;
   }
   @media screen and (max-width: 600px){
     #header{
@@ -129,6 +119,23 @@ li:hover{
     ul{
         width: 100%;
       }
+  }
+  #add-button{
+    border: none;
+    background-color: #efa453;
+    cursor: pointer;
+  }
+  .fa-sun{
+    border: none;
+    background-color: #efa45300;
+    cursor: pointer;
+    font-size:20px;
+  }
+  .fa-moon{
+    border: none;
+    background-color: #efa45300;
+    cursor: pointer;
+    font-size:20px;
   }
   /* .darkDeleter{
     background-color:rgb(31 31 35);;

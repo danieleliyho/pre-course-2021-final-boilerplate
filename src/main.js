@@ -164,6 +164,16 @@ function counter(){
         let done = document.getElementsByClassName("done").length
         document.querySelector("#counter").innerHTML = divContainer.length-done;
 }
+function toggleTheme(value) { 
+  
+    // Obtain the name of stylesheet  
+    // as a parameter and set it  
+    // using href attribute. 
+    let sheets = document 
+        .getElementsByTagName('link'); 
+
+    sheets[0].href = value; 
+} 
 
 
 
