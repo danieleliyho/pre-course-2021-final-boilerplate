@@ -11,6 +11,7 @@ let li = document.getElementsByTagName("li");
 add.addEventListener('click',function(){
     getNewTask();
     counter();
+    myFunction()
 })
 let sort = document.getElementById("sort-button");
 
@@ -54,6 +55,7 @@ function getNewTask(data=null){
         createContainer(text,priorityText,dateSql,checkboxBool)
 
 }input.value = "";
+
 }
 function createContainer(text,priorityText,dateSql,checkboxBool){
     let divContainer = document.createElement("div");
@@ -121,6 +123,7 @@ function createContainer(text,priorityText,dateSql,checkboxBool){
         let output = prompt("edit your todo",text.textContent);
         text.textContent = output
         setPersistent(getInfo());
+        myFunction()
     })
 }
 function removeRow(li){
