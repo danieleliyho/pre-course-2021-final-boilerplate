@@ -11,7 +11,7 @@ let li = document.getElementsByTagName("li");
 add.addEventListener('click',function(){
     getNewTask();
     counter();
-    myFunction()
+    myFunction();
     input.focus();
 
 })
@@ -130,6 +130,9 @@ function createContainer(text,priorityText,dateSql,checkboxBool){
         myFunction()
         }
     })
+    inputserch = document.getElementById('myInput');
+    inputserch.value = "";
+
 }
 function removeRow(li){
     li.remove();

@@ -33,7 +33,15 @@ body{
       background-color: rgb(193 164 97);
 
   }
-  
+
+a{
+  pointer-events: none;
+}
+.done a{
+  pointer-events: none;
+  color: gray;
+  text-decoration: line-through;
+}
   li:hover{
       background-color: rgb(193 164 97);
       animation-name: example;
