@@ -46,7 +46,7 @@ li:hover{
     border: solid;
     border-width: 0px;
     margin: auto;
-    height: 100vh;
+    height: 100%;
     width: 60%;
     padding-inline-start: 0px;
     background-color: #ffac53;
