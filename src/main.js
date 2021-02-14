@@ -12,6 +12,8 @@ add.addEventListener('click',function(){
     getNewTask();
     counter();
     myFunction()
+    input.focus();
+
 })
 let sort = document.getElementById("sort-button");
 
@@ -55,7 +57,7 @@ function getNewTask(data=null){
         createContainer(text,priorityText,dateSql,checkboxBool)
 
 }input.value = "";
-
+ 
 }
 function createContainer(text,priorityText,dateSql,checkboxBool){
     let divContainer = document.createElement("div");
