@@ -29,12 +29,11 @@ section{
 .done{
     color: gray;
     background-color: rgb(193 164 97);
-    text-decoration: line-through;
+
 }
 
 li:hover{
     background-color: rgb(193 164 97);
-    cursor: pointer;
     animation-name: example;
     animation-duration: 2.8s;
 }

@@ -122,10 +122,13 @@ function createContainer(text,priorityText,dateSql,checkboxBool){
         removeRow(li)
     })
     editer.addEventListener('click',function(){
+        
         let output = prompt("edit your todo",text.textContent);
+        if(output){
         text.textContent = output
         setPersistent(getInfo());
         myFunction()
+        }
     })
 }
 function removeRow(li){
