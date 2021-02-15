@@ -138,6 +138,7 @@ function removeRow(li){
     li.remove();
     setPersistent(getInfo());
     counter();
+    
 }
 
 function getInfo(){
